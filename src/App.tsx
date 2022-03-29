@@ -1,21 +1,25 @@
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import './App.css';
-import Login from './src/Login';
-import Main from './src/Main';
-
+import { Auth0Provider } from '@auth0/auth0-react';
+import Main from './Main/Main';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Profile from './Pages/Profile';
+import Error from './Pages/Error';
+import Files from './Pages/Files';
 const App = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
-    <div className="App">
-      <Auth0Provider
-        domain="dev-ahn5wgpa.us.auth0.com"
-        clientId="F8kijmEMa16YpFCOkSJn4wdip4lpFa5Y"
-        redirectUri={window.location.origin}
-      >
-        <Login/>
-        {/* <Main /> */}
-      </Auth0Provider>
-    </div>
+    <Auth0Provider
+      domain="dev-ahn5wgpa.us.auth0.com"
+      clientId="tKZj5erCThmRBo0M53n8NigcI0leJehi"
+      redirectUri={window.location.origin}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/files' element={<Files />} />
+          <Route path='*' element={<Error errorCode={"404"}/>}/>
+        </Routes>
+      </BrowserRouter>
+    </Auth0Provider>
   );
 }
 
