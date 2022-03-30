@@ -39,7 +39,7 @@ const Navbar = () => {
     };
 
     if(isLoading) return <p>Loading</p>
-    if(!isAuthenticated) navigate('/404')
+    if(!isAuthenticated) navigate('/')
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -133,10 +133,10 @@ const Navbar = () => {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={()=>{
+                                    if(setting === 'Profile') navigate('/profile')
                                     if(setting === 'Logout'){
                                         logout()
                                     }
-                                    handleCloseUserMenu()
                                 }}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>

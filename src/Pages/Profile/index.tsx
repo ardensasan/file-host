@@ -1,18 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import LoginButton from "../../Main/LoginButton";
-import LogoutButton from "../../Main/LogoutButton";
+import { Container, TextField } from "@mui/material";
 
-const Profile = () =>{
-    const { user, isAuthenticated, isLoading} = useAuth0()
+const Profile = () => {
+    const { user, isLoading } = useAuth0()
     if (isLoading) {
         return <div>Loading ...</div>;
-      }    
-    return isAuthenticated ? <div>
-        <h2>Welcome {user?.name}</h2>
-        <p>{user?.email}</p>
-        <img src={user?.picture} alt={user?.name}/>
-        <LogoutButton/>
-    </div> : <LoginButton/>
+    }
+    return <Container>
+        <TextField/>
+        <TextField/>
+        <TextField/>
+        <p>{user?.name}</p>
+    </Container>
 }
 
 export default Profile
