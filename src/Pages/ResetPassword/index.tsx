@@ -30,10 +30,10 @@ const ResetPassword = () => {
                 <Alert severity="success">{message}</Alert>
             </List>}
         <List>
-            <TextField label="Email" placeholder="email@example.com" fullWidth onChange={handleEmailOnChange}></TextField>
+            <TextField label="Email" placeholder="email@example.com" fullWidth onChange={handleEmailOnChange}/>
         </List>
         <List>
-            <Button fullWidth onClick={handleResetPassword}>Reset Password</Button>
+            <Button fullWidth onClick={handleResetPassword} variant="contained">Reset Password</Button>
         </List>
     </Container>
 }
