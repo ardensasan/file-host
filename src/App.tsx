@@ -7,6 +7,7 @@ import Error from './Pages/Error';
 import Files from './Pages/Files';
 import File from './Pages/File';
 import ResetPassword from './Pages/ResetPassword';
+import Upload from './components/Upload';
 const App = () => {
   return (
     <Auth0Provider

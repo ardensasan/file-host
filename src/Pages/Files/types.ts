@@ -1,6 +1,7 @@
 export interface FileListState {
     files: Array<File>
     isFetching: boolean
+    isUploading: boolean
 }
 
 export interface File {
