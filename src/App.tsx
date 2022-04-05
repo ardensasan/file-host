@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Profile from './Pages/Profile';
 import Error from './Pages/Error';
 import Files from './Pages/Files';
+import File from './Pages/File';
 import ResetPassword from './Pages/ResetPassword';
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='reset-password' element={<ResetPassword />} />
           <Route path='/files' element={<Files />} />
+          <Route path='/file/:id' element={<File />} />
           <Route path='*' element={<Error errorCode={"404"} />} />
         </Routes>
       </BrowserRouter>
