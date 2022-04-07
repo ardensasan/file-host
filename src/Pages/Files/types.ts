@@ -7,6 +7,7 @@ export interface FileListState {
 export interface File {
     _id: string
     user_id: string
+    handle: string
     filename: string
     mimetype: string
     size: number

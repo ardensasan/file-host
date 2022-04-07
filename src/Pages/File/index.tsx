@@ -15,7 +15,7 @@ const File = () => {
     const navigate = useNavigate()
     const handleGetFiles = async () => {
         try {
-            const { data: { result: file = {} } = {} } = await axios.post(`http://localhost:3001/file/${id}`, { user_id })
+            const { data: { result: file = {} } = {} } = await axios.post(`https://file-host-api.vercel.app/file/${id}`, { user_id })
             setFileState({ ...fileState, file, isFetching: false })
         } catch (error) {
             navigate('/404')

@@ -1,3 +1,5 @@
+import { FILE_URL } from "./constants";
+
 export const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
 
@@ -10,9 +12,9 @@ export const formatBytes = (bytes: number, decimals = 2) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-export const displayThumbnail = (mimetype: string, src?: string) => {
-    if (['image/jpeg'].includes(mimetype)) {
-        return src
+export const displayThumbnail = (mimetype: string, handle: string) => {
+    if (['image/jpg','image/jpeg','image/png'].includes(mimetype)) {
+        return `${FILE_URL}/resize=height:200/${handle}`
     }
     if (['text/csv'].includes(mimetype)) {
         return 'https://via.placeholder.com/150'

@@ -15,8 +15,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router';
 
 const Navbar = () => {
-
-    const pages = ['Files', 'Pricing', 'Blog'];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const { user, isAuthenticated, isLoading, logout } = useAuth0()
     const navigate = useNavigate();

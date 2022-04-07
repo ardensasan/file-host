@@ -11,7 +11,6 @@ const Upload = ({handleCloseUploadDialog, handleGetFiles}:Props) => {
     }
     return <PickerOverlay
         apikey="AISzuYn89Q3WgkHBDELhBz"
-        onSuccess={(res: any) => console.log("sucess", res)}
         onUploadDone={(res: any) => {
             handleUploadDone(res)
             handleGetFiles()
