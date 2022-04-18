@@ -45,35 +45,36 @@ const Files = () => {
     })
     return <Fragment>
         <Navbar />
-        {isFetching && isLoading && <Loading />}
-        {isUploading && <Upload handleCloseUploadDialog={handleCloseUploadDIalog} handleGetFiles={handleGetFiles} />}
-        {!isFetching && !isLoading && <Container >
-            <Button fullWidth variant="contained" style={{ marginTop: "20px" }} onClick={handleOpenUploadDialog}><UploadIcon />Upload</Button>
-            <ImageList sx={{ width: "100%", height: "100%" }} rowHeight={200} ref={imageListRef} cols={colNum}>
-                {files.map((file: File) => (
-                    <ImageListItem key={file._id} sx={{ height: 200 }}>
-                        <img
-                            src={displayThumbnail(file.mimetype, file.handle)}
-                            alt={file.filename}
-                            loading="lazy"
-                        />
-                        <ImageListItemBar
-                            title={file.filename}
-                            actionIcon={
-                                <IconButton
-                                    sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                                    aria-label={`info about ${file.filename}`}
-                                    onClick={() => navigate(`/file/${file._id}`)}
-                                >
-                                    <PageviewIcon />
-                                </IconButton>
-                            }
-                        />
-                    </ImageListItem>
-                ))}
-            </ImageList>
-        </Container>}
-        {/* {!fileListState.isFetching && <Upload />} */}
+        <Container >
+            {isFetching && isLoading && <Loading />}
+            {isUploading && <Upload handleCloseUploadDialog={handleCloseUploadDIalog} handleGetFiles={handleGetFiles} />}
+            {!isFetching && !isLoading && <Fragment><Button fullWidth variant="contained" style={{ marginTop: "20px" }} onClick={handleOpenUploadDialog}><UploadIcon />Upload</Button>
+                <ImageList sx={{ width: "100%", height: "100%" }} rowHeight={200} ref={imageListRef} cols={colNum}>
+                    {files.map((file: File) => (
+                        <ImageListItem key={file._id} sx={{ height: 200 }}>
+                            <img
+                                style={{ height: 200 }}
+                                src={displayThumbnail(file.mimetype, file.handle)}
+                                alt={file.filename}
+                                loading="lazy"
+                            />
+                            <ImageListItemBar
+                                title={file.filename}
+                                actionIcon={
+                                    <IconButton
+                                        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                                        aria-label={`info about ${file.filename}`}
+                                        onClick={() => navigate(`/file/${file._id}`)}
+                                    >
+                                        <PageviewIcon />
+                                    </IconButton>
+                                }
+                            />
+                        </ImageListItem>
+                    ))}
+                </ImageList>
+            </Fragment>
+            }</Container>
     </Fragment>
 }
 
