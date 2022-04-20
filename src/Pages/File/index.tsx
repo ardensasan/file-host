@@ -5,7 +5,6 @@ import { Fragment, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import Loading from "../../components/Loading"
 import Navbar from "../../components/Navbar"
-import { API_URL } from "../../utils/constants"
 import { formatBytes } from "../../utils/tools"
 import { FileState } from "./types"
 
@@ -16,7 +15,7 @@ const File = () => {
     const navigate = useNavigate()
     const handleGetFiles = async () => {
         try {
-            const { data: { result: file = {} } = {} } = await axios.post(`${API_URL}/file/${id}`, { user_id })
+            const { data: { result: file = {} } = {} } = await axios.post(`${process.env.REACT_APP_API_URL}/file/${id}`, { user_id })
             setFileState({ ...fileState, file, isFetching: false })
         } catch (error) {
             navigate('/404')

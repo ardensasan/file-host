@@ -7,12 +7,11 @@ import Error from './Pages/Error';
 import Files from './Pages/Files';
 import File from './Pages/File';
 import ResetPassword from './Pages/ResetPassword';
-import Upload from './components/Upload';
 const App = () => {
   return (
     <Auth0Provider
-      domain="dev-ahn5wgpa.us.auth0.com"
-      clientId="tKZj5erCThmRBo0M53n8NigcI0leJehi"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN || ''}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || ''}
       redirectUri={window.location.origin}>
       <BrowserRouter>
         <Routes>

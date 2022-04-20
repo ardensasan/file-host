@@ -10,7 +10,6 @@ import UploadIcon from '@mui/icons-material/Upload';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import { FileListState, File } from "./types"
 import { displayThumbnail } from "../../utils/tools"
-import { API_URL } from "../../utils/constants"
 
 const Files = () => {
     const { user: { sub: user_id = '' } = {}, isLoading } = useAuth0()
@@ -20,7 +19,7 @@ const Files = () => {
     const imageListRef = useRef<any>()
     const { files = [], isFetching = true, isUploading } = fileListState
     const handleGetFiles = async () => {
-        const { data: { result: files = [] } = {} } = await axios.post(`${API_URL}/files`, { filter: { user_id } })
+        const { data: { result: files = [] } = {} } = await axios.post(`${process.env.REACT_APP_API_URL}/files`, { filter: { user_id } })
         setFileListState({ ...fileListState, files, isFetching: false, isUploading: false })
     }
 
