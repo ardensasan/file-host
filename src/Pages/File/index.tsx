@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import Loading from "../../components/Loading"
 import Navbar from "../../components/Navbar"
-import { formatBytes } from "../../utils/tools"
+import { displayFile, formatBytes } from "../../utils/tools"
 import { FileState } from "./types"
 
 const File = () => {
@@ -27,7 +27,7 @@ const File = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     })
 
-    const { file: { filename = '', mimetype = '', size = '', url = '' } = {}, isFetching = true } = fileState
+    const { file: { filename = '', mimetype = '', size = '', url = '', handle = '' } = {}, isFetching = true } = fileState
     return <Fragment>
         <Navbar />
         {isFetching && isLoading && <Loading />}
@@ -36,10 +36,8 @@ const File = () => {
                 <Card>
                     <CardMedia
                         component="img"
-                        height="400"
-                        width="120"
-                        image="https://via.placeholder.com/400"
-                        alt="green iguana"
+                        image={displayFile(mimetype,handle)}
+                        alt={filename}
                     />
                 </Card>
                 <ListItem>

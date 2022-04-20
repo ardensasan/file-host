@@ -15,6 +15,22 @@ export const displayThumbnail = (mimetype: string, handle: string) => {
         return `${process.env.REACT_APP_FILE_URL}/resize=height:200/${handle}`
     }
     if (['text/csv'].includes(mimetype)) {
-        return 'https://via.placeholder.com/150'
+        return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/document.png`
+    }
+    if (['application/zip','application/rar'].includes(mimetype)) {
+        return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/compressed.png`
+    }
+}
+
+export const displayFile = (mimetype: string, handle: string) => {
+    const type = (mimetype.split('/'))[0] || ''
+    if (type === 'image') {
+        return `${process.env.REACT_APP_FILE_URL}/${handle}`
+    }
+    if (['text/csv','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document',''].includes(mimetype)) {
+        return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/document.png`
+    }
+    if (['application/zip','application/rar'].includes(mimetype)) {
+        return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/compressed.png`
     }
 }
