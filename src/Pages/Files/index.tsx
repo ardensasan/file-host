@@ -10,7 +10,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import { FileListState, File } from "./types"
 import { displayThumbnail } from "../../utils/tools"
-
+import './styles.css'
 const Files = () => {
     const { user: { sub: user_id = '' } = {}, isLoading } = useAuth0()
     const navigate = useNavigate()
@@ -51,12 +51,7 @@ const Files = () => {
                 <ImageList sx={{ width: "100%", height: "100%" }} rowHeight={200} ref={imageListRef} cols={colNum}>
                     {files.map((file: File) => (
                         <ImageListItem key={file._id} sx={{ height: 200 }}>
-                            <img
-                                style={{ height: 200 }}
-                                src={displayThumbnail(file.mimetype, file.handle)}
-                                alt={file.filename}
-                                loading="lazy"
-                            />
+                            <div className="file-image" style={{ background: `url(${displayThumbnail(file.mimetype, file.handle)})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
                             <ImageListItemBar
                                 title={file.filename}
                                 actionIcon={

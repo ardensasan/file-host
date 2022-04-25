@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { Card, CardMedia, Container, List, ListItem, TextField, Typography } from "@mui/material"
+import { Container, List, ListItem, TextField, Typography } from "@mui/material"
 import axios from "axios"
 import { Fragment, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
@@ -7,7 +7,7 @@ import Loading from "../../components/Loading"
 import Navbar from "../../components/Navbar"
 import { displayFile, formatBytes } from "../../utils/tools"
 import { FileState } from "./types"
-
+import './styles.css'
 const File = () => {
     const { user: { sub: user_id = '' } = {}, isLoading } = useAuth0()
     const { id = '' } = useParams()
@@ -33,13 +33,7 @@ const File = () => {
         {isFetching && isLoading && <Loading />}
         {!isFetching && !isLoading && <Container maxWidth="md">
             <List>
-                <Card>
-                    <CardMedia
-                        component="img"
-                        image={displayFile(mimetype,handle)}
-                        alt={filename}
-                    />
-                </Card>
+                <div className="file-image" style={{ background: `url(${displayFile(mimetype, handle)})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
                 <ListItem>
                     <Typography>Filename : <strong>{filename}</strong></Typography>
                 </ListItem>
