@@ -3,7 +3,7 @@ import axios from 'axios';
 import { PickerOverlay } from 'filestack-react';
 import { Props } from './types';
 
-const Upload = ({handleCloseUploadDialog, handleGetFiles}:Props) => {
+const Upload = ({ handleCloseUploadDialog, handleGetFiles }: Props) => {
     const { user: { sub: user_id = '' } = {} } = useAuth0()
     const handleUploadDone = (uploadResponse: any) => {
         const { filesUploaded = [] } = uploadResponse
@@ -15,7 +15,15 @@ const Upload = ({handleCloseUploadDialog, handleGetFiles}:Props) => {
             handleUploadDone(res)
             handleGetFiles()
         }}
-        onClose={()=>handleCloseUploadDialog}
+        clientOptions={
+            {
+                security: {
+                    policy: process.env.REACT_APP_FILESTACK_POLICY,
+                    signature: process.env.REACT_APP_FILESTACK_SIGNATURE
+                }
+            }
+        }
+        onClose={() => handleCloseUploadDialog}
     />
 }
 

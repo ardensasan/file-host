@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
 
@@ -25,7 +27,7 @@ export const displayThumbnail = (mimetype: string, handle: string) => {
 export const displayFile = (mimetype: string, handle: string) => {
     const type = (mimetype.split('/'))[0] || ''
     if (type === 'image') {
-        return `${process.env.REACT_APP_FILE_URL}/${handle}`
+        return `${process.env.REACT_APP_FILE_URL}/${handle}?key=${process.env.REACT_APP_FILESTACK_API_KEY}&policy=${process.env.REACT_APP_FILESTACK_POLICY}&signature=${process.env.REACT_APP_FILESTACK_SIGNATURE}`
     }
     if (['text/csv','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document',''].includes(mimetype)) {
         return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/document.png`
@@ -33,4 +35,9 @@ export const displayFile = (mimetype: string, handle: string) => {
     if (['application/zip','application/rar'].includes(mimetype)) {
         return `${window.location.protocol}//${window.location.host}/assets/file-types-placeholder/compressed.png`
     }
+}
+
+export const deleteFile = async (handle:string) =>{
+    console.log('%c 🍞 process.env.REACT_APP_FILESTACK_API: ', 'font-size:20px;background-color: #3F7CFF;color:#fff;', process.env.REACT_APP_FILESTACK_API);
+    return axios.delete(`${process.env.REACT_APP_FILESTACK_API}/${handle}?key=${process.env.REACT_APP_FILESTACK_API_KEY}&policy=${process.env.REACT_APP_FILESTACK_POLICY}&signature=${process.env.REACT_APP_FILESTACK_SIGNATURE}`)
 }
