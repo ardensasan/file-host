@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { Button, Container, IconButton, ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
+import { Alert, Button, Container, IconButton, ImageList, ImageListItem, ImageListItemBar } from "@mui/material"
 import axios from "axios"
 import { Fragment, useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router"
@@ -11,6 +11,7 @@ import PageviewIcon from '@mui/icons-material/Pageview';
 import { FileListState, File } from "./types"
 import { displayThumbnail } from "../../utils/tools"
 import './styles.css'
+import { useLocation } from "react-router-dom"
 const Files = () => {
     const { user: { sub: user_id = '' } = {}, isLoading } = useAuth0()
     const navigate = useNavigate()
@@ -42,6 +43,7 @@ const Files = () => {
             setColNum(Math.floor(imageListRef.current.clientWidth / 200))
         }
     })
+    
     return <Fragment>
         <Navbar />
         <Container >

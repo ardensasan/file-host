@@ -5,7 +5,7 @@ import { Fragment, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import Loading from "../../components/Loading"
 import Navbar from "../../components/Navbar"
-import { deleteFile, displayFile, formatBytes } from "../../utils/tools"
+import { displayFile, formatBytes } from "../../utils/tools"
 import { FileState } from "./types"
 import DeleteIcon from '@mui/icons-material/Delete';
 import './styles.css'
@@ -29,7 +29,10 @@ const File = () => {
     })
 
     const handleDeleteFile = async (handle:string) =>{
-        await axios.post(`${process.env.REACT_APP_API_URL}/delete/${id}`, { user_id, handle })
+        const { data = "ERROR" } = await axios.post(`${process.env.REACT_APP_API_URL}/delete/${id}`, { user_id, handle })
+        if(data === "SUCCESS"){
+            navigate('/files')
+        }
     }
 
     const { file: { filename = '', mimetype = '', size = '', url = '', handle = '' } = {}, isFetching = true } = fileState
